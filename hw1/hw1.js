@@ -37,22 +37,18 @@ console.log(counter.decrement());
 
 console.log("---- задание 3 -----");
 
-let serchElement = [];
 
 function findElementByClass(rootEl, classEl) {
-    if (rootEl.hasChildNodes()) {
-       for (let element of rootEl.children) {
-          if (element.className === classEl) {
-             serchElement.push(element);
-             if (serchElement[0].className !== classEl) {
-                serchElement = [];
-                serchElement.push(element);
-             }
-          }
-          findElementByClass(element, classEl);
-       }
-    }
-    return serchElement[0];
+   if (rootEl.classList.contains(classEl)) {
+     return rootEl;
+   }
+   for (const child of rootEl.children) {
+     const findedElem = findElementByClass(child, classEl);
+     if (findedElem) {
+       return findedElem;
+     }
+   }
+   return null;
  }
 
 const rootElement = document.getElementById("root");
