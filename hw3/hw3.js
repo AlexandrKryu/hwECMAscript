@@ -15,9 +15,9 @@ class Employee {
     this.name = name;
   }
 
-  displayInfo = function () {
+  displayInfo() {
     console.log(`Name: ${this.name}`);
-  };
+  }
 }
 
 class Manager extends Employee {
@@ -25,9 +25,9 @@ class Manager extends Employee {
     super(name);
     this.department = department;
   }
-  displayInfo = function () {
+  displayInfo() {
     console.log(`Name: ${this.name} , department: ${this.department}`);
-  };
+  }
 }
 // // Пример использования классов
 const employee = new Employee("John Smith");
@@ -58,30 +58,35 @@ class Product {
 }
 
 class Order {
+  products = [];
+  totalPrice = 0;
   constructor(orderNumber) {
     this.orderNumber = orderNumber;
-    this.products = [];
-    this.totalPrice = 0;
   }
   addProduct(product) {
     this.products.push(product);
   }
 
   getTotalPrice() {
-    for (const value in this.products) {
-      this.totalPrice += this.products[value].price * this.products[value].quantity;
-    }
-    return this.totalPrice
+    this.totalPrice = this.products.reduce((acc, product) => {
+      return acc + product.price * product.quantity;
+    }, 0);
+    return this.totalPrice;
   }
+  // for (const value in this.products) {
+  //   this.totalPrice +=
+  //     this.products[value].price * this.products[value].quantity;
+  // }
+  // console.log(this.totalPrice);
 }
 
 // Пример использования:
 const order = new Order(12345);
 
-const product1 = new Product("Phone", 9500, 2);
+const product1 = new Product("Phone", 5500, 5);
 order.addProduct(product1);
 
-const product2 = new Product("Headphones", 100, 9);
+const product2 = new Product("Headphones", 300, 9);
 order.addProduct(product2);
 
-console.log(order.getTotalPrice()); // Вывод: 19900
+console.log(order.getTotalPrice()); // Вывод: 30200
