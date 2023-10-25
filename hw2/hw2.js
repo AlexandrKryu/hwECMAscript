@@ -16,10 +16,10 @@ class Book {
     this.author = author;
     this.pages = pages;
   }
-  displayInfo = () =>
-    console.log(
-      `Title: ${this.title}, Author: "${this.author}", Pages: ${this.pages}`
-    );
+  displayInfo() {console.log(
+    `Title: ${this.title}, Author: "${this.author}", Pages: ${this.pages}`
+  );}
+    
 }
 
 // // Пример использования класса
@@ -42,10 +42,12 @@ class Student{
         this.age = age;
         this.grade = grade;
     }
-    displayInfo = () =>
-    console.log(
-      `Name: ${this.name}, Age: ${this.age}, Grade: ${this.grade}`
-    );
+    displayInfo() {
+      console.log(
+        `Name: ${this.name}, Age: ${this.age}, Grade: ${this.grade}`
+      );
+    }
+    
 }
 
 // // Пример использования класса
